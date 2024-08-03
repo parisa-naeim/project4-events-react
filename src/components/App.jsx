@@ -16,8 +16,10 @@ import EventFilter from "./EventFilter/EventFilter";
 export const AuthedUserContext = createContext(null);
 
 const initialFilterData = {
+  title: "",
   category: "",
   type: "",
+  onlyFree: false,
 };
 
 const App = () => {
@@ -28,7 +30,8 @@ const App = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user) fetchAllEvents();
+    // if (user)
+    fetchAllEvents();
   }, [user, filterData]);
 
   const fetchAllEvents = async () => {
@@ -37,8 +40,13 @@ const App = () => {
   };
 
   const handleSignout = () => {
+    setFilterData(initialFilterData);
     authService.signout();
     setUser(null);
+  };
+
+  const handleSearch = (text) => {
+    setFilterData({ ...filterData, title: text });
   };
 
   const handleAddEvent = async (eventFormData) => {
@@ -78,16 +86,15 @@ const App = () => {
   const filterEvents = (allEvents) => {
     if (filterData) {
       return allEvents.filter((event) => {
-        // if (
-        //   filterData.title &&
-        //   !event.title.toLowerCase().includes(filterData.title.toLowerCase())
-        // ) {
-        //   return false;
-        // }
+        if (
+          filterData.title &&
+          !event.title.toLowerCase().includes(filterData.title.toLowerCase())
+        ) {
+          return false;
+        }
 
-        console.log("filter" , filterData);
+        console.log("filter", filterData);
         console.log(events);
-
 
         if (filterData.category && event.category !== filterData.category) {
           return false;
@@ -97,7 +104,7 @@ const App = () => {
           return false;
         }
 
-        if (filterData.onlyFree && event.cost >0) {
+        if (filterData.onlyFree && event.cost > 0) {
           return false;
         }
 
@@ -109,7 +116,12 @@ const App = () => {
   return (
     <>
       <AuthedUserContext.Provider value={user}>
-        <NavBar user={user} handleSignout={handleSignout} setUser={setUser} />
+        <NavBar
+          user={user}
+          handleSignout={handleSignout}
+          handleSearch={handleSearch}
+          setUser={setUser}
+        />
         <div className="p-4 d-flex justify-content-center">
           <div className="max-width w-100">
             <Routes>
@@ -121,7 +133,9 @@ const App = () => {
                     element={
                       <div className="w-100 d-flex flex-column align-items-center">
                         <EventFilter
-                          filterEvent={setFilterData}
+                          filterEvent={(filter) =>
+                            setFilterData({ ...filterData, ...filter })
+                          }
                           resetFilter={() => setFilterData(initialFilterData)}
                         />
                         <EventList events={events} />
@@ -162,7 +176,7 @@ const App = () => {
                   />
                 </>
               ) : (
-                <Route path="/" element={<Landing />} />
+                <Route path="/" element={<Landing events={events} />} />
               )}
               <Route
                 path="/signup"
