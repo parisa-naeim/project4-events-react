@@ -21,8 +21,8 @@ const EventForm = (props) => {
     const data = new FormData();
     data.append("file", image);
     data.append("upload_preset", "react-cloudinary");
-    data.append("cloud_name", "djaedfrag");
-    return fetch("https://api.cloudinary.com/v1_1/djaedfrag/image/upload", {
+    data.append("cloud_name", "ddp2alrop");
+    return fetch("https://api.cloudinary.com/v1_1/ddp2alrop/image/upload", {
       method: "post",
       body: data,
     })
