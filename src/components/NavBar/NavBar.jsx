@@ -6,7 +6,7 @@ import Modal from "../Modal/Modal";
 import SigninForm from "../SigninForm/SigninForm";
 import SearchBar from "../serachBar/SearchBar";
 
-const NavBar = ({ handleSignout, setUser }) => {
+const NavBar = ({ handleSignout, setUser, handleSearch }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -25,15 +25,11 @@ const NavBar = ({ handleSignout, setUser }) => {
   return (
     <>
       {user ? (
-        <nav
-          className="navbar navbar-expand-sm px-3 py-3"
-          // style={{ backgroundColor: "rgb(211 151 62)" }}
-          // data-bs-theme="dark"
-        >
+        <nav className="navbar navbar-expand-sm px-3 py-3">
           <Link className="navbar-brand" to="/">
             Events
           </Link>
-          <SearchBar />
+          <SearchBar handleSearch={handleSearch} />
           <div className="container-fluid max-width">
             <button
               className="navbar-toggler"
@@ -100,15 +96,11 @@ const NavBar = ({ handleSignout, setUser }) => {
           </div>
         </nav>
       ) : (
-        <nav
-          className="navbar navbar-expand-sm px-3 py-3"
-          // style={{ backgroundColor: "rgb(211 151 62)" }}
-          // data-bs-theme="dark"
-        >
+        <nav className="navbar navbar-expand-sm px-3 py-3">
           <Link className="navbar-brand" to="/">
             Events
           </Link>
-          <SearchBar />
+          <SearchBar handleSearch={handleSearch} />
           <div className="container-fluid max-width">
             <button
               className="navbar-toggler"
