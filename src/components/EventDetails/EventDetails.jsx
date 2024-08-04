@@ -43,15 +43,19 @@ const EventDetails = (props) => {
   return (
     <main>
       <header>
+        <h2>{event.title}</h2>
         <p
-          className="lead"
-          style={{ textTransform: "uppercase", textDecoration: "underline" }}
+          style={{
+            textTransform: "uppercase",
+            textDecoration: "underline",
+            fontSize: "0.8em",
+          }}
         >
           {event.category}
         </p>
       </header>
 
-      <section className="container">
+      <section>
         <div className="row justify-content-center">
           <div
             className="modal-div"
@@ -117,79 +121,93 @@ const EventDetails = (props) => {
             </div>
           </div>
 
-          <div className="col-md-6">
-            <img
-              style={{ border: "1px solid #dfdedb", borderRadius: "0.5em" }}
-              className="w-50 rounded mx-auto d-block "
-              src={event.image || "https://placehold.co/400x300.png"}
-            />
-            <h2 className="display-6 py-2">{event.title}</h2>
-            <h4 className="h4">{event.cost}</h4>
-            <p style={{ color: "#aaaaaa" }}>
-              Listed on {new Date(event.createdAt).toLocaleDateString()} by{" "}
-              {event.organiser.username}
-            </p>
+          <div className="d-flex">
+            <div style={{ width: "70%" }}>
+              <img
+                style={{
+                  border: "1px solid #dfdedb",
+                  borderRadius: "0.5em",
+                  maxWidth: "700px",
+                }}
+                className="rounded d-block p-absolute left-0 w-100"
+                src={event.image || "https://placehold.co/600x400.png"}
+              />
 
-            <div
-              className="d-flex gap-5 justify-content-between mt-5"
-              style={{ minWidth: "800px", maxWidth: "50%" }}
-            >
-              <div>
-                <p>Description:</p>
+              <div className="my-3">
+                <h5>Details</h5>
                 <p>{event.description}</p>
-                <p>type: {event.type}</p>
-              </div>
-
-              <div>
-                <p>Pick up postcode: {event.postcode}</p>
-                <MapComponent postcode={event.postcode} />
               </div>
             </div>
+            <div style={{ width: "30%" }}>
+              {/* <h4 className="h4">{event.cost}</h4> */}
 
-            {/* Attendees */}
-            <div className="mt-5">
-              <h2>Attendees</h2>
+              <p style={{ color: "#aaaaaa" }}>
+                {new Date(event.date).toLocaleDateString("default", {
+                  day: "2-digit",
+                  month: "long",
+                  year: "numeric",
+                })}
+              </p>
+              <p style={{ color: "#aaaaaa" }}>held by @{user.username}</p>
+              <p style={{ color: "#aaaaaa" }}>
+                This is an {event.type.toLowerCase()} event
+              </p>
 
-              {event.attendees.length === 0 && <p>No attendees yet.</p>}
+              <div
+                className="d-flex gap-5 justify-content-between mt-5"
+                style={{ minWidth: "800px", maxWidth: "50%" }}
+              >
+                <div>
+                  <p>Location: {event.address}</p>
+                  <MapComponent postcode={event.address} />
+                </div>
+              </div>
 
-              {event.attendees.map((attendee) => (
-                <article key={attendee._id}>
-                  <img
-                    src="/profile-icon.jpg"
-                    alt={attendee.username}
-                    title={attendee.username}
-                    style={{ width: "50px", height: "50px" }}
-                  />
-                </article>
-              ))}
+              {/* Attendees */}
+              <div className="mt-5">
+                <h2>Attendees</h2>
 
-              {event.organiser._id !== user._id && (
-                <>
-                  {event.attendees.some(
-                    (attendee) => attendee._id == user._id
-                  ) && (
-                    <button
-                      className="btn btn-primary btn-m mx-3 px-5 py-2 mt-2"
-                      onClick={() => setShowLeaveForm(true)}
-                      type="button"
-                    >
-                      Not attending
-                    </button>
-                  )}
+                {event.attendees.length === 0 && <p>No attendees yet.</p>}
 
-                  {!event.attendees.some(
-                    (attendee) => attendee._id == user._id
-                  ) && (
-                    <button
-                      className="btn btn-primary btn-m mx-3 px-5 py-2 mt-2"
-                      onClick={() => setShowJoinForm(true)}
-                      type="button"
-                    >
-                      Join
-                    </button>
-                  )}
-                </>
-              )}
+                {event.attendees.map((attendee) => (
+                  <article key={attendee._id}>
+                    <img
+                      src="/profile-icon.jpg"
+                      alt={attendee.username}
+                      title={attendee.username}
+                      style={{ width: "50px", height: "50px" }}
+                    />
+                  </article>
+                ))}
+
+                {event.organiser._id !== user._id && (
+                  <>
+                    {event.attendees.some(
+                      (attendee) => attendee._id == user._id
+                    ) && (
+                      <button
+                        className="btn btn-primary btn-m mx-3 px-5 py-2 mt-2"
+                        onClick={() => setShowLeaveForm(true)}
+                        type="button"
+                      >
+                        Not attending
+                      </button>
+                    )}
+
+                    {!event.attendees.some(
+                      (attendee) => attendee._id == user._id
+                    ) && (
+                      <button
+                        className="btn btn-primary btn-m mx-3 px-5 py-2 mt-2"
+                        onClick={() => setShowJoinForm(true)}
+                        type="button"
+                      >
+                        Join
+                      </button>
+                    )}
+                  </>
+                )}
+              </div>
             </div>
 
             {/* Action buttons */}

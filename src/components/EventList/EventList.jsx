@@ -18,8 +18,14 @@ const EventList = (props) => {
         <h5 className="card-title">{event.title}</h5>
         <p>{event.description}</p>
 
-        {/* <p className="card-text">{event.date.substring(0, 10)}</p> */}
-        <p style={{ marginBottom: "0" }}>07 AUG 2024</p>
+        <p className="card-text mb-0">
+          {new Date(event.date).toLocaleDateString("default", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          })}
+        </p>
+        {/* <p style={{ marginBottom: "0" }}>07 AUG 2024</p> */}
         <div className="card-footer-div">
           <div>
             <p

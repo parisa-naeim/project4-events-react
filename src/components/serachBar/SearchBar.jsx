@@ -23,14 +23,14 @@ const SearchBar = (props) => {
     <div className="container-fluid">
       <form className="d-flex" role="search" onSubmit={handleSubmit}>
         <input
-          className="form-control me-2"
+          className="form-control col-lg mx-3"
           type="search"
-          placeholder="Search"
+          placeholder="what event you are looking for?"
           aria-label="Search"
           value={text}
           onChange={handleChange}
         />
-        <button className="btn btn-outline-primary" type="submit">
+        <button className="btn btn-primary" type="submit">
           Search
         </button>
       </form>

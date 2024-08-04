@@ -26,11 +26,11 @@ const NavBar = ({ handleSignout, setUser, handleSearch }) => {
     <>
       {user ? (
         <nav className="navbar navbar-expand-sm px-3 py-3">
-          <Link className="navbar-brand" to="/">
-            Events
-          </Link>
-          <SearchBar handleSearch={handleSearch} />
-          <div className="container-fluid max-width">
+          <div className="container-fluid px-5 py-3">
+            <Link className="navbar-brand" to="/">
+              Events
+            </Link>
+
             <button
               className="navbar-toggler"
               type="button"
@@ -46,9 +46,12 @@ const NavBar = ({ handleSignout, setUser, handleSearch }) => {
               className="collapse navbar-collapse"
               id="navbarSupportedContent"
             >
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <div style={{ minWidth: "30rem" }}>
+                <SearchBar handleSearch={handleSearch} />
+              </div>
+              {/* <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  {/* <Link
+                  { <Link
                     className={
                       "nav-link " +
                       (location.pathname === "/events" && "active")
@@ -56,9 +59,9 @@ const NavBar = ({ handleSignout, setUser, handleSearch }) => {
                     to="/events"
                   >
                     Home
-                  </Link> */}
+                  </Link> }
                 </li>
-                <li className="nav-item">
+                { <li className="nav-item">
                   <Link
                     className={
                       "nav-link " +
@@ -68,20 +71,16 @@ const NavBar = ({ handleSignout, setUser, handleSearch }) => {
                   >
                     My Events
                   </Link>
-                </li>
-                <li className="nav-item">
-                  <Link
-                    className={
-                      "nav-link " +
-                      (location.pathname === "/events/new" && "active")
-                    }
-                    to="/events/new"
-                  >
+                </li> }
+                
+              </ul> */}
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+              <ul className="navbar-nav me-2 mb-2 mb-lg-0">
+                <li className="nav-item mx-4">
+                  <Link className="btn btn-primary" to="/events/new">
                     Create New Event
                   </Link>
                 </li>
-              </ul>
-              <ul className="navbar-nav me-2 mb-2 mb-lg-0">
                 <li className="nav-item me-3">
                   <div className="nav-link">{user.username}</div>
                 </li>
