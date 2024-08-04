@@ -46,6 +46,7 @@ const App = () => {
   };
 
   const handleSearch = (text) => {
+    navigate("/");
     setFilterData({ ...filterData, title: text });
   };
 

@@ -1,6 +1,6 @@
 .event-container {
   display: flex;
-  gap: 1em;
+  gap: 2em;
   flex-wrap: wrap;
 }
 
@@ -75,7 +75,6 @@ body {
   font-style: normal;
 }
 
-
 /* Modal.css */
 .modal-overlay {
   position: fixed;
@@ -106,4 +105,26 @@ body {
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
+}
+
+.card-div {
+  border: none !important;
+}
+
+.card-div img {
+  border-radius: 1em;
+  margin-bottom: 20px;
+}
+
+.card-body {
+  padding-top: 0 !important;
+}
+
+.card-footer-div {
+  position: "absolute";
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 85% !important;
+  flex-wrap: wrap;
 }
