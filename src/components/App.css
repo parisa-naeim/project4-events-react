@@ -111,7 +111,7 @@ body {
   border: none !important;
 }
 
-.card-div img {
+.card-div .card-img-top {
   border-radius: 1em;
   margin-bottom: 20px;
 }
@@ -131,4 +131,18 @@ body {
 
 .card-div h5:hover {
   text-decoration: underline;
+}
+.footer {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+  border-top: 1px solid #161616;
+  background-color: white;
+}
+.event-icon {
+  margin-right: 10px;
+  margin-bottom: 5px;
+  width: 20px;
 }

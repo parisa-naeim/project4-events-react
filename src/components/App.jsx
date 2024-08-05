@@ -123,7 +123,10 @@ const App = () => {
           handleSearch={handleSearch}
           setUser={setUser}
         />
-        <div className="p-4 d-flex justify-content-center">
+        <div
+          className="p-4 d-flex justify-content-center"
+          style={{ overflowX: "clip" }}
+        >
           <div className="max-width w-100">
             <Routes>
               {user ? (

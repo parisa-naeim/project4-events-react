@@ -15,10 +15,15 @@ const EventList = (props) => {
         alt="..."
       ></img>
       <div className="card-body">
-        <h5 className="card-title">{event.title}</h5>
-        <p>{event.description}</p>
+        <h5 className="card-title">
+          {event.title.length > 50
+            ? event.title.substring(0, 50) + "..."
+            : event.title}
+        </h5>
+        <p>{event.category}</p>
 
         <p className="card-text mb-0">
+          <img className="event-icon" src="calendar-event.svg"></img>
           {new Date(event.date).toLocaleDateString("default", {
             day: "2-digit",
             month: "long",
@@ -28,18 +33,14 @@ const EventList = (props) => {
         {/* <p style={{ marginBottom: "0" }}>07 AUG 2024</p> */}
         <div className="card-footer-div">
           <div>
-            <p
-              style={
-                {
-                  // paddingLeft: "25px",
-                }
-              }
-            >
+            <p>
+              <img src="person-raised-hand.svg" className="event-icon"></img>
               {event.attendees.length + " going"}
             </p>
           </div>
           <div>
-            <p>{event.cost ? "$" + event.cost : "FREE"}</p>
+            <p>
+              <img src="coin.svg" className="event-icon"></img>{event.cost ? "$" + event.cost : "FREE"}</p>
           </div>
         </div>
       </div>

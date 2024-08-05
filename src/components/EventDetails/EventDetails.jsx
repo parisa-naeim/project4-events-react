@@ -179,34 +179,6 @@ const EventDetails = (props) => {
                     />
                   </article>
                 ))}
-
-                {event.organiser._id !== user._id && (
-                  <>
-                    {event.attendees.some(
-                      (attendee) => attendee._id == user._id
-                    ) && (
-                      <button
-                        className="btn btn-primary btn-m mx-3 px-5 py-2 mt-2"
-                        onClick={() => setShowLeaveForm(true)}
-                        type="button"
-                      >
-                        Not attending
-                      </button>
-                    )}
-
-                    {!event.attendees.some(
-                      (attendee) => attendee._id == user._id
-                    ) && (
-                      <button
-                        className="btn btn-primary btn-m mx-3 px-5 py-2 mt-2"
-                        onClick={() => setShowJoinForm(true)}
-                        type="button"
-                      >
-                        Join
-                      </button>
-                    )}
-                  </>
-                )}
               </div>
             </div>
 
@@ -233,6 +205,31 @@ const EventDetails = (props) => {
           </div>
         </div>
       </section>
+      <footer className="footer">
+        {event.organiser._id !== user._id && (
+          <>
+            {event.attendees.some((attendee) => attendee._id == user._id) && (
+              <button
+                className="btn btn-primary btn-m mx-3 px-5 py-2 mt-2"
+                onClick={() => setShowLeaveForm(true)}
+                type="button"
+              >
+                Not attending
+              </button>
+            )}
+
+            {!event.attendees.some((attendee) => attendee._id == user._id) && (
+              <button
+                className="btn btn-primary btn-m mx-3 px-5 py-2 mt-2"
+                onClick={() => setShowJoinForm(true)}
+                type="button"
+              >
+                Join
+              </button>
+            )}
+          </>
+        )}
+      </footer>
     </main>
   );
 };

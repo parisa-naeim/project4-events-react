@@ -15,7 +15,7 @@ const MapComponent = ({ postcode }) => {
       style: "mapbox://styles/mapbox/streets-v11",
       center: [144.9844, -37.8382], // initial map center in [lng, lat]
       zoom: 15, // initial map zoom
-      interactive: false, // disable map interaction
+      interactive: true, // disable map interaction
     });
 
     // Disable zoom and rotation controls
@@ -35,6 +35,10 @@ const MapComponent = ({ postcode }) => {
         );
         const [lng, lat] = response.data.features[0].center;
         map.setCenter([lng, lat]);
+
+        new mapboxgl.Marker()
+          .setLngLat([lng, lat]) // Marker position [lng, lat]
+          .addTo(map);
       } catch (error) {
         console.error("Error fetching location data:", error);
       }
