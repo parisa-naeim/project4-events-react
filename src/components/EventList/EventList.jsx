@@ -10,7 +10,7 @@ const EventList = (props) => {
       to={"/events/" + event._id}
     >
       <img
-        src={event.image || "https://placehold.co/400x300.png"}
+        src={event.image || "sample-event-image-2.png"}
         className="card-img-top"
         alt="..."
       ></img>

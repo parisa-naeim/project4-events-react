@@ -125,7 +125,7 @@ const EventDetails = (props) => {
             <div style={{ width: "60%" }}>
               <img
                 className="event-image-top"
-                src={event.image || "https://placehold.co/600x400.png"}
+                src={event.image || "/sample-event-image-2.png"}
               />
 
               <div className="my-3">
