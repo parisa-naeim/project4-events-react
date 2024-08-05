@@ -121,15 +121,10 @@ const EventDetails = (props) => {
             </div>
           </div>
 
-          <div className="d-flex">
-            <div style={{ width: "70%" }}>
+          <div className="d-flex gap-4">
+            <div style={{ width: "60%" }}>
               <img
-                style={{
-                  border: "1px solid #dfdedb",
-                  borderRadius: "0.5em",
-                  maxWidth: "700px",
-                }}
-                className="rounded d-block p-absolute left-0 w-100"
+                className="event-image-top"
                 src={event.image || "https://placehold.co/600x400.png"}
               />
 
@@ -138,7 +133,7 @@ const EventDetails = (props) => {
                 <p>{event.description}</p>
               </div>
             </div>
-            <div style={{ width: "30%" }}>
+            <div style={{ width: "40%" }}>
               {/* <h4 className="h4">{event.cost}</h4> */}
 
               <p style={{ color: "#aaaaaa" }}>
@@ -181,32 +176,11 @@ const EventDetails = (props) => {
                 ))}
               </div>
             </div>
-
-            {/* Action buttons */}
-            <div className="mt-5">
-              {event.organiser._id === user._id && (
-                <>
-                  <button
-                    className="btn btn-primary btn-m mx-3 px-5 py-2 mt-2"
-                    onClick={() => props.handleEditEvent(event._id)}
-                  >
-                    Edit
-                  </button>
-
-                  <button
-                    className="btn btn-primary btn-m mx-3 px-5 py-2 mt-2"
-                    onClick={() => props.handleDeleteEvent(event._id)}
-                  >
-                    Delete
-                  </button>
-                </>
-              )}
-            </div>
           </div>
         </div>
       </section>
       <footer className="footer">
-        {event.organiser._id !== user._id && (
+        {event.organiser._id !== user._id ? (
           <>
             {event.attendees.some((attendee) => attendee._id == user._id) && (
               <button
@@ -228,6 +202,26 @@ const EventDetails = (props) => {
               </button>
             )}
           </>
+        ) : (
+          <div className="">
+            {event.organiser._id === user._id && (
+              <>
+                <button
+                  className="btn btn-primary btn-m mx-3 px-5 py-2 mt-2"
+                  onClick={() => props.handleEditEvent(event._id)}
+                >
+                  Edit
+                </button>
+
+                <button
+                  className="btn btn-primary btn-m mx-3 px-5 py-2 mt-2"
+                  onClick={() => props.handleDeleteEvent(event._id)}
+                >
+                  Delete
+                </button>
+              </>
+            )}
+          </div>
         )}
       </footer>
     </main>

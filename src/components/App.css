@@ -149,3 +149,13 @@ body {
   margin-bottom: 5px;
   width: 20px;
 }
+
+.event-image-top {
+  border: 1px solid #dfdedb;
+  border-radius: 0.5em;
+  width: 680px !important;
+  height: 420px !important;
+  margin: 15px 0;
+
+  /* rounded d-block p-absolute left-0 w-100 */
+}

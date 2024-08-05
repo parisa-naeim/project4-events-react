@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import * as eventService from "../../services/eventService";
 
-const BASE_UPLOAD_URL = import.meta.env.VITE_EXPRESS_BACKEND_URL + "/uploads";
+const BASE_UPLOAD_URL = import.meta.env.VITE_EXPRESS_BACKEND_URL + "/uploads/";
 
 const EventForm = (props) => {
   const [image, setImage] = useState("");

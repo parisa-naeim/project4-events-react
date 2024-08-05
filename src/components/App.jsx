@@ -124,7 +124,7 @@ const App = () => {
           setUser={setUser}
         />
         <div
-          className="p-4 d-flex justify-content-center"
+          className="d-flex justify-content-center"
           style={{ overflowX: "clip" }}
         >
           <div className="max-width w-100">
