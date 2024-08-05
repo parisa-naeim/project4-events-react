@@ -114,6 +114,8 @@ body {
 .card-div .card-img-top {
   border-radius: 1em;
   margin-bottom: 20px;
+  width: 300px;
+  height: 200px;
 }
 
 .card-body {
@@ -141,6 +143,7 @@ body {
   border-top: 1px solid #161616;
   background-color: white;
 }
+
 .event-icon {
   margin-right: 10px;
   margin-bottom: 5px;

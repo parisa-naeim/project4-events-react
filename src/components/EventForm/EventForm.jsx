@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 
 import * as eventService from "../../services/eventService";
 
+const BASE_UPLOAD_URL = import.meta.env.VITE_EXPRESS_BACKEND_URL + "/uploads";
+
 const EventForm = (props) => {
   const [image, setImage] = useState("");
   const [formData, setFormData] = useState({
@@ -20,13 +22,9 @@ const EventForm = (props) => {
   const uploadImage = async (image) => {
     const data = new FormData();
     data.append("file", image);
-    data.append("upload_preset", "react-cloudinary");
-    data.append("cloud_name", "ddp2alrop");
-    return fetch("https://api.cloudinary.com/v1_1/ddp2alrop/image/upload", {
-      method: "post",
-      body: data,
-    })
-      .then((res) => res.json())
+    return eventService
+      .uploadImage(data)
+      .then((res) => res)
       .catch((err) => console.log(err));
   };
 
@@ -36,8 +34,8 @@ const EventForm = (props) => {
     const fetchEvent = async () => {
       const eventData = await eventService.show(id);
       console.log(eventData);
-      console.log(eventData.date.substring(0,10));
-      eventData.date = eventData.date.substring(0,10);
+      console.log(eventData.date.substring(0, 10));
+      eventData.date = eventData.date.substring(0, 10);
       setFormData(eventData);
     };
     if (id) fetchEvent();
@@ -56,15 +54,15 @@ const EventForm = (props) => {
     try {
       if (image) {
         const data = await uploadImage(image);
-        console.log("data.url", data.url);
-        setFormData({ ...formData, image: data.url });
-        formData.image = data.url;
+        console.log("data.url", data);
+        setFormData({
+          ...formData,
+          image: BASE_UPLOAD_URL + data.url,
+        });
+        formData.image = BASE_UPLOAD_URL + data.url;
       }
-      // else {
-      //   setImage("");
-      // }
       formData._id = id;
-      props.handleSubmit(formData); // might be add! might be update!
+      props.handleSubmit(formData);
       setImage("");
     } catch (error) {
       console.log(error);

@@ -87,7 +87,6 @@ const joinEvent = async (eventId) => {
   }
 };
 
-
 const leaveEvent = async (eventId) => {
   try {
     const response = await fetch(`${BASE_URL}/${eventId}/leave`, {
@@ -103,5 +102,30 @@ const leaveEvent = async (eventId) => {
   }
 };
 
+const uploadImage = async (formData) => {
+  try {
+    console.log("trying to send formdata: ", formData);
+    const response = await fetch(`${BASE_URL}/upload`, {
+      method: "POST",
+      body: formData,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+        // "Content-Type": "multipart/form-data",
+      },
+    });
+    return response.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-export { index, show, create, update, deleteEvent, joinEvent, leaveEvent };
+export {
+  index,
+  show,
+  create,
+  update,
+  deleteEvent,
+  joinEvent,
+  leaveEvent,
+  uploadImage,
+};
