@@ -81,9 +81,32 @@ const NavBar = ({ handleSignout, setUser, handleSearch }) => {
                     Create New Event
                   </Link>
                 </li>
-                <li className="nav-item me-3">
-                  <div className="nav-link">{user.username}</div>
+
+                <li className="nav-item dropdown">
+                  <a
+                    className="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    User: {user.username}
+                  </a>
+                  <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a className="dropdown-item" href="#">
+                      My Events
+                    </a>
+                    <a className="dropdown-item" href="#">
+                      My Profile
+                    </a>
+                  </div>
                 </li>
+
+                {/* <li className="nav-item me-3">
+                  <div className="nav-link">{user.username}</div>
+                </li> */}
 
                 <li className="nav-item">
                   <Link className="nav-link" to="/" onClick={handleSignout}>
@@ -91,6 +114,7 @@ const NavBar = ({ handleSignout, setUser, handleSearch }) => {
                   </Link>
                 </li>
               </ul>
+              
             </div>
           </div>
         </nav>
