@@ -141,7 +141,7 @@ const EventDetails = (props) => {
                   day: "2-digit",
                   month: "long",
                   year: "numeric",
-                })}
+                })} 11:30AM
               </p>
               <p style={{ color: "#aaaaaa" }}>held by @{user.username}</p>
               <p style={{ color: "#aaaaaa" }}>
@@ -182,6 +182,9 @@ const EventDetails = (props) => {
       <footer className="footer">
         {event.organiser._id !== user._id ? (
           <>
+            <button className="btn btn-secondary btn-m mx-3 px-5 py-2 mt-2">
+              Share
+            </button>
             {event.attendees.some((attendee) => attendee._id == user._id) && (
               <button
                 className="btn btn-primary btn-m mx-3 px-5 py-2 mt-2"
@@ -206,6 +209,10 @@ const EventDetails = (props) => {
           <div className="">
             {event.organiser._id === user._id && (
               <>
+                <button className="btn btn-secondary btn-m mx-3 px-5 py-2 mt-2">
+                  Share
+                </button>
+
                 <button
                   className="btn btn-primary btn-m mx-3 px-5 py-2 mt-2"
                   onClick={() => props.handleEditEvent(event._id)}
