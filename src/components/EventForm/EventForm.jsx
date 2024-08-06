@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import * as eventService from "../../services/eventService";
 
@@ -213,13 +213,16 @@ const EventForm = (props) => {
                 className="form-control"
               />
             </div>
-
-            <div className="mb-3">
-              <button type="submit" className="btn btn-primary mb-3">
-                {id ? "Update Event" : "Create event"}
-              </button>
-            </div>
           </div>
+        </div>
+        <div className="mt-4 d-flex gap-5 w-100 justify-content-center">
+          <Link className="btn btn-secondary mb-3 " to="/events">
+            Cancel
+          </Link>
+
+          <button type="submit" className="btn btn-primary mb-3">
+            {id ? "Update Event" : "Create event"}
+          </button>
         </div>
       </form>
     </main>
