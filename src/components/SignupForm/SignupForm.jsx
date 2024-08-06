@@ -37,7 +37,10 @@ const SignupForm = (props) => {
   };
 
   return (
-    <main className="min-width-400 d-flex flex-column justify-content-center align-items-center height-70vh">
+    <main
+      className="min-width-400 d-flex flex-column justify-content-center align-items-center height-70vh"
+      style={{ backgroundColor: "white" }}
+    >
       <h1 className="mb-5">Sign Up</h1>
       <p>{message}</p>
       <form onSubmit={handleSubmit} className="w-25 min-width-400">
@@ -83,7 +86,7 @@ const SignupForm = (props) => {
             onChange={handleChange}
           />
         </div>
-        <div className="d-flex gap-5 mt-3">
+        <div className="d-flex gap-5 mt-3 w-100 justify-content-center">
           <div>
             <button
               className="btn px-4 py-2 btn-primary"

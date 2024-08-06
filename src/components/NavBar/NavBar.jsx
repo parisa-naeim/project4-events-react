@@ -5,20 +5,25 @@ import "bootstrap/dist/css/bootstrap.css";
 import Modal from "../Modal/Modal";
 import SigninForm from "../SigninForm/SigninForm";
 import SearchBar from "../serachBar/SearchBar";
+import SignupForm from "../SignupForm/SignupForm";
 
 const NavBar = ({ handleSignout, setUser, handleSearch }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showSignIn, setShowSignIn] = useState(false);
+  const [showSignUp, setShowSignUp] = useState(false);
   const navigate = useNavigate();
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
 
   const user = useContext(AuthedUserContext);
   const location = useLocation();
 
   const handleOnSignIn = (user) => {
     setUser(user);
-    closeModal();
+    setShowSignIn(false);
+    navigate("/");
+  };
+
+  const handleOnSignUp = (user) => {
+    setUser(user);
+    setShowSignUp(false);
     navigate("/");
   };
 
@@ -49,19 +54,14 @@ const NavBar = ({ handleSignout, setUser, handleSearch }) => {
               <div style={{ minWidth: "30rem" }}>
                 <SearchBar handleSearch={handleSearch} />
               </div>
-              {/* <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item">
-                  { <Link
-                    className={
-                      "nav-link " +
-                      (location.pathname === "/events" && "active")
-                    }
-                    to="/events"
-                  >
-                    Home
-                  </Link> }
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+              <ul className="navbar-nav me-2 mb-2 mb-lg-0">
+                <li className="nav-item mx-4">
+                  <Link className="btn btn-primary" to="/events/new">
+                    Create New Event
+                  </Link>
                 </li>
-                { <li className="nav-item">
+                <li className="nav-item">
                   <Link
                     className={
                       "nav-link " +
@@ -71,46 +71,10 @@ const NavBar = ({ handleSignout, setUser, handleSearch }) => {
                   >
                     My Events
                   </Link>
-                </li> }
-                
-              </ul> */}
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
-              <ul className="navbar-nav me-2 mb-2 mb-lg-0">
-                <li className="nav-item mx-4">
-                  <Link className="btn btn-primary" to="/events/new">
-                    Create New Event
-                  </Link>
                 </li>
-
-                <li className="nav-item dropdown">
-                  <a
-                    className="nav-link dropdown-toggle"
-                    href="#"
-                    id="navbarDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    User: {user.username}
-                  </a>
-                  <div
-                    className="dropdown-menu"
-                    aria-labelledby="navbarDropdown"
-                  >
-                    <a className="dropdown-item" href="#">
-                      My Events
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      My Profile
-                    </a>
-                  </div>
+                <li className="nav-item">
+                  <Link className="nav-link">@{user.username}</Link>
                 </li>
-
-                {/* <li className="nav-item me-3">
-                  <div className="nav-link">{user.username}</div>
-                </li> */}
-
                 <li className="nav-item">
                   <Link className="nav-link" to="/" onClick={handleSignout}>
                     Sign out
@@ -121,7 +85,7 @@ const NavBar = ({ handleSignout, setUser, handleSearch }) => {
           </div>
         </nav>
       ) : (
-        <nav className="navbar navbar-expand-sm px-3 py-3 mb-4 mt-3">
+        <nav className="navbar navbar-expand-sm px-3 py-3 mb-4 mt-3 px-5">
           <Link className="navbar-brand" to="/">
             Events
           </Link>
@@ -145,42 +109,36 @@ const NavBar = ({ handleSignout, setUser, handleSearch }) => {
               id="navbarSupportedContent"
             >
               <ul
-                style={{ position: "absolute", right: "20px" }}
+                style={{ position: "absolute", right: "5rem" }}
                 className="navbar-nav me-auto mb-2 mb-lg-0"
               >
                 <li className="nav-item">
-                  {/* <Link
-                    className={
-                      "nav-link " +
-                      (location.pathname === "/signin" && "active")
-                    }
-                    aria-current="page"
-                    to="/signin"
+                  <button
+                    className="nav-link mx-3"
+                    onClick={() => setShowSignIn(true)}
                   >
-                    Sign In
-                  </Link> */}
-                  <button className="nav-link mx-3" onClick={openModal}>
                     Sign In
                   </button>
                 </li>
                 <li className="nav-item">
-                  <Link
-                    className={
-                      "btn btn-primary " +
-                      (location.pathname === "/signup" && "active")
-                    }
-                    to="/signup"
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => setShowSignUp(true)}
                   >
                     Sign Up
-                  </Link>
+                  </button>
                 </li>
               </ul>
             </div>
           </div>
         </nav>
       )}
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
+      <Modal isOpen={showSignIn} onClose={() => setShowSignIn(false)}>
         <SigninForm onSignIn={handleOnSignIn} />
+      </Modal>
+
+      <Modal isOpen={showSignUp} onClose={() => setShowSignUp(false)}>
+        <SignupForm onSignUp={handleOnSignUp} />
       </Modal>
     </>
   );
