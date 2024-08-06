@@ -94,7 +94,10 @@ const NavBar = ({ handleSignout, setUser, handleSearch }) => {
                   >
                     User: {user.username}
                   </a>
-                  <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <div
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdown"
+                  >
                     <a className="dropdown-item" href="#">
                       My Events
                     </a>
@@ -114,17 +117,18 @@ const NavBar = ({ handleSignout, setUser, handleSearch }) => {
                   </Link>
                 </li>
               </ul>
-              
             </div>
           </div>
         </nav>
       ) : (
-        <nav className="navbar navbar-expand-sm px-3 py-3">
+        <nav className="navbar navbar-expand-sm px-3 py-3 mb-4 mt-3">
           <Link className="navbar-brand" to="/">
             Events
           </Link>
-          <SearchBar handleSearch={handleSearch} />
-          <div className="container-fluid max-width">
+          <div style={{ minWidth: "30rem" }}>
+            <SearchBar handleSearch={handleSearch} />
+          </div>
+          <div className="container-fluid px-5 py-3">
             <button
               className="navbar-toggler"
               type="button"
@@ -140,7 +144,10 @@ const NavBar = ({ handleSignout, setUser, handleSearch }) => {
               className="collapse navbar-collapse"
               id="navbarSupportedContent"
             >
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <ul
+                style={{ position: "absolute", right: "20px" }}
+                className="navbar-nav me-auto mb-2 mb-lg-0"
+              >
                 <li className="nav-item">
                   {/* <Link
                     className={
@@ -152,12 +159,14 @@ const NavBar = ({ handleSignout, setUser, handleSearch }) => {
                   >
                     Sign In
                   </Link> */}
-                  <button onClick={openModal}>Sign In</button>
+                  <button className="nav-link mx-3" onClick={openModal}>
+                    Sign In
+                  </button>
                 </li>
                 <li className="nav-item">
                   <Link
                     className={
-                      "nav-link " +
+                      "btn btn-primary " +
                       (location.pathname === "/signup" && "active")
                     }
                     to="/signup"
