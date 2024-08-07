@@ -54,15 +54,9 @@
 }
 
 .landing-main {
-  /* background-image: url("/market.jpg"); */
   background-position: bottom;
   background-repeat: no-repeat;
   height: 100vh;
-}
-
-button {
-  /* background-color: #1697e8 !important;
-  border-color: #1697e8 !important; */
 }
 
 .height-70vh {
@@ -75,7 +69,6 @@ body {
   font-style: normal;
 }
 
-/* Modal.css */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -156,6 +149,4 @@ body {
   width: 680px !important;
   height: 420px !important;
   margin: 15px 0;
-
-  /* rounded d-block p-absolute left-0 w-100 */
 }

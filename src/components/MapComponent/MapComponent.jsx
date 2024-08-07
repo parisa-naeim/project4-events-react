@@ -15,7 +15,7 @@ const MapComponent = ({ postcode }) => {
       style: "mapbox://styles/mapbox/streets-v11",
       center: [144.9844, -37.8382], // initial map center in [lng, lat]
       zoom: 15, // initial map zoom
-      interactive: true, // disable map interaction
+      interactive: false, // disable map interaction
     });
 
     // Disable zoom and rotation controls

@@ -172,6 +172,7 @@ const EventDetails = (props) => {
                       title={attendee.username}
                       style={{ width: "50px", height: "50px" }}
                     />
+                    <span style={{color: "#444444"}}>{attendee.username}</span>
                   </article>
                 ))}
               </div>

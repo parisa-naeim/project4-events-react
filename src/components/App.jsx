@@ -57,7 +57,6 @@ const App = () => {
   };
 
   const handleUpdateEvent = async (eventFormData) => {
-    console.log("eventFormData" + JSON.stringify(eventFormData));
     const updatedEvent = await eventService.update(
       eventFormData._id,
       eventFormData
@@ -93,9 +92,6 @@ const App = () => {
         ) {
           return false;
         }
-
-        console.log("filter", filterData);
-        console.log(events);
 
         if (filterData.category && event.category !== filterData.category) {
           return false;

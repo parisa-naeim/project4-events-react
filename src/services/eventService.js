@@ -104,7 +104,6 @@ const leaveEvent = async (eventId) => {
 
 const uploadImage = async (formData) => {
   try {
-    console.log("trying to send formdata: ", formData);
     const response = await fetch(`${BASE_URL}/upload`, {
       method: "POST",
       body: formData,

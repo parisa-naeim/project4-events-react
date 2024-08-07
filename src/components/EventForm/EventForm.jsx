@@ -33,8 +33,6 @@ const EventForm = (props) => {
   useEffect(() => {
     const fetchEvent = async () => {
       const eventData = await eventService.show(id);
-      console.log(eventData);
-      console.log(eventData.date.substring(0, 10));
       eventData.date = eventData.date.substring(0, 10);
       setFormData(eventData);
     };
@@ -54,7 +52,6 @@ const EventForm = (props) => {
     try {
       if (image) {
         const data = await uploadImage(image);
-        console.log("data.url", data);
         setFormData({
           ...formData,
           image: BASE_UPLOAD_URL + data.url,

@@ -30,7 +30,6 @@ const EventList = (props) => {
             year: "numeric",
           })}
         </p>
-        {/* <p style={{ marginBottom: "0" }}>07 AUG 2024</p> */}
         <div className="card-footer-div">
           <div>
             <p>
@@ -40,7 +39,9 @@ const EventList = (props) => {
           </div>
           <div>
             <p>
-              <img src="coin.svg" className="event-icon"></img>{event.cost ? "$" + event.cost : "FREE"}</p>
+              <img src="coin.svg" className="event-icon"></img>
+              {event.cost ? "$" + event.cost : "FREE"}
+            </p>
           </div>
         </div>
       </div>
