@@ -36,7 +36,7 @@ const SignupForm = (props) => {
   return (
     <main
       className="min-width-400 d-flex flex-column justify-content-center align-items-center height-70vh"
-      style={{ backgroundColor: "white" }}
+      style={{ backgroundColor: "white", borderRadius: "1rem" }}
     >
       <h1 className="mb-5">Sign Up</h1>
       <p>{message}</p>

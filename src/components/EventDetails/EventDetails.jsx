@@ -1,8 +1,9 @@
 import { useState, useEffect, useContext } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { AuthedUserContext } from "../App";
 import * as eventService from "../../services/eventService";
 import MapComponent from "../MapComponent/MapComponent";
+import Modal from "../Modal/Modal";
 
 const EventDetails = (props) => {
   const [event, setEvent] = useState(null);
@@ -57,69 +58,53 @@ const EventDetails = (props) => {
 
       <section>
         <div className="row justify-content-center">
-          <div
-            className="modal-div"
-            style={{ display: showJoinForm ? "block" : "none" }}
-          >
-            <div className="modal-content-div">
-              <span
-                className="modal-close-btn"
-                onClick={() => setShowJoinForm(false)}
-              >
-                &times;
-              </span>
-              <div>
-                <p>confirm joining {event.title}</p>
-                <div className="d-flex" style={{ textAlign: "center" }}>
-                  <button
-                    className="btn btn-primary btn-m mx-3 px-3 mt-4"
-                    onClick={handleJoin}
-                  >
-                    Join!
-                  </button>
+          <Modal isOpen={showJoinForm} onClose={() => setShowJoinForm(false)}>
+            <div
+              className="min-width-400 d-flex flex-column justify-content-center align-items-center height-10vh p-4"
+              style={{ backgroundColor: "white", borderRadius: "1rem" }}
+            >
+              <h4 className="my-5">Do you want to join "{event.title}"?</h4>
+              <div className="d-flex" style={{ textAlign: "center" }}>
+                <button
+                  className="btn btn-primary btn-m mx-3 px-3 mt-4"
+                  onClick={handleJoin}
+                >
+                  Sure, let's join!
+                </button>
 
-                  <button
-                    className="btn btn-primary btn-m mx-3 px-3 mt-4"
-                    onClick={() => setShowJoinForm(false)}
-                  >
-                    Not yet
-                  </button>
-                </div>
+                <button
+                  className="btn btn-primary btn-m mx-3 px-3 mt-4"
+                  onClick={() => setShowJoinForm(false)}
+                >
+                  Not now.
+                </button>
               </div>
             </div>
-          </div>
+          </Modal>
 
-          <div
-            className="modal-div"
-            style={{ display: showLeaveForm ? "block" : "none" }}
-          >
-            <div className="modal-content-div">
-              <span
-                className="modal-close-btn"
-                onClick={() => setShowLeaveForm(false)}
-              >
-                &times;
-              </span>
-              <div>
-                <p>confirm leaving {event.title}</p>
-                <div className="d-flex" style={{ textAlign: "center" }}>
-                  <button
-                    className="btn btn-primary btn-m mx-3 px-3 mt-4"
-                    onClick={handleLeave}
-                  >
-                    Leave now!
-                  </button>
+          <Modal isOpen={showLeaveForm} onClose={() => setShowLeaveForm(false)}>
+            <div
+              className="min-width-400 d-flex flex-column justify-content-center align-items-center height-10vh p-4"
+              style={{ backgroundColor: "white", borderRadius: "1rem" }}
+            >
+              <h4 className="my-5">Do you want to leave "{event.title}"?</h4>
+              <div className="d-flex" style={{ textAlign: "center" }}>
+                <button
+                  className="btn btn-primary btn-m mx-3 px-3 mt-4"
+                  onClick={handleLeave}
+                >
+                  Yes. I want to leave.
+                </button>
 
-                  <button
-                    className="btn btn-primary btn-m mx-3 px-3 mt-4"
-                    onClick={() => setShowLeaveForm(false)}
-                  >
-                    No
-                  </button>
-                </div>
+                <button
+                  className="btn btn-primary btn-m mx-3 px-3 mt-4"
+                  onClick={() => setShowLeaveForm(false)}
+                >
+                  No. I decide later.
+                </button>
               </div>
             </div>
-          </div>
+          </Modal>
 
           <div className="d-flex gap-4">
             <div style={{ width: "60%" }}>
@@ -134,16 +119,17 @@ const EventDetails = (props) => {
               </div>
             </div>
             <div style={{ width: "40%" }}>
-              {/* <h4 className="h4">{event.cost}</h4> */}
-
               <p style={{ color: "#aaaaaa" }}>
                 {new Date(event.date).toLocaleDateString("default", {
                   day: "2-digit",
                   month: "long",
                   year: "numeric",
-                })} 11:30AM
+                })}{" "}
+                11:30AM
               </p>
-              <p style={{ color: "#aaaaaa" }}>held by @{event.organiser.username}</p>
+              <p style={{ color: "#aaaaaa" }}>
+                held by @{event.organiser.username}
+              </p>
               <p style={{ color: "#aaaaaa" }}>
                 This is an {event.type.toLowerCase()} event
               </p>
@@ -158,12 +144,9 @@ const EventDetails = (props) => {
                 </div>
               </div>
 
-              {/* Attendees */}
               <div className="mt-5">
                 <h2>Attendees</h2>
-
                 {event.attendees.length === 0 && <p>No attendees yet.</p>}
-
                 {event.attendees.map((attendee) => (
                   <article key={attendee._id}>
                     <img
@@ -172,7 +155,9 @@ const EventDetails = (props) => {
                       title={attendee.username}
                       style={{ width: "50px", height: "50px" }}
                     />
-                    <span style={{color: "#444444"}}>{attendee.username}</span>
+                    <span style={{ color: "#444444" }}>
+                      {attendee.username}
+                    </span>
                   </article>
                 ))}
               </div>
@@ -183,7 +168,7 @@ const EventDetails = (props) => {
       <footer className="footer">
         {event.organiser._id !== user._id ? (
           <>
-            <button className="btn btn-secondary btn-m mx-3 px-5 py-2 mt-2">
+            <button className="btn btn-secondary btn-m mx-3 px-5 py-2 mt-2 button-link-border">
               Share
             </button>
             {event.attendees.some((attendee) => attendee._id == user._id) && (
@@ -192,7 +177,7 @@ const EventDetails = (props) => {
                 onClick={() => setShowLeaveForm(true)}
                 type="button"
               >
-                Not attending
+                Leave
               </button>
             )}
 

@@ -57,14 +57,14 @@ const NavBar = ({ handleSignout, setUser, handleSearch }) => {
               <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
               <ul className="navbar-nav me-2 mb-2 mb-lg-0">
                 <li className="nav-item mx-4">
-                  <Link className="btn btn-primary" to="/events/new">
+                  <button className="btn btn-primary" to="/events/new">
                     Create New Event
-                  </Link>
+                  </button>
                 </li>
                 <li className="nav-item">
                   <Link
                     className={
-                      "nav-link " +
+                      "nav-link button-link " +
                       (location.pathname === "/my-events" && "active")
                     }
                     to="/my-events"
@@ -73,10 +73,14 @@ const NavBar = ({ handleSignout, setUser, handleSearch }) => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link">@{user.username}</Link>
+                  <Link className="nav-link button-link">@{user.username}</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/" onClick={handleSignout}>
+                  <Link
+                    className="nav-link button-link"
+                    to="/"
+                    onClick={handleSignout}
+                  >
                     Sign out
                   </Link>
                 </li>
@@ -114,7 +118,7 @@ const NavBar = ({ handleSignout, setUser, handleSearch }) => {
               >
                 <li className="nav-item">
                   <button
-                    className="nav-link mx-3"
+                    className="nav-link mx-3 button-link"
                     onClick={() => setShowSignIn(true)}
                   >
                     Sign In

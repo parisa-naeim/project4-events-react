@@ -64,7 +64,7 @@
 }
 
 body {
-  font-family: "Josefin Sans", sans-serif !important;
+  font-family: math, sans-serif !important;
   font-optical-sizing: auto;
   font-style: normal;
 }
@@ -84,7 +84,7 @@ body {
 
 .modal-content {
   background: white;
-  padding: 20px;
+  /* padding: 20px; */
   border-radius: 4px;
   max-width: 500px;
   width: 100%;
@@ -150,4 +150,32 @@ body {
   width: 680px !important;
   height: 420px !important;
   margin: 15px 0;
+}
+
+button {
+  background-color: #47a8c5 !important;
+  border: 1px solid #47a8c5 !important;
+}
+
+.button-link {
+  background-color: white !important;
+  border: none !important;
+  color: #47a8c5 !important;
+}
+
+.button-link-border {
+  background-color: white !important;
+  color: #47a8c5 !important;
+  border: 1px solid #47a8c5 !important;
+}
+
+.text-brown {
+  color: #a96c42;
+}
+
+.navbar-brand {
+  font-family: cursive, sans-serif !important;
+  font-size: 2rem !important;
+  color: #a96c42 !important;
+  font-weight: bold !important;
 }
