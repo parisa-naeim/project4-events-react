@@ -213,7 +213,7 @@ const EventForm = (props) => {
           </div>
         </div>
         <div className="mt-4 d-flex gap-5 w-100 justify-content-center">
-          <Link className="btn btn-secondary mb-3 " to="/events">
+          <Link className="btn btn-secondary mb-3 " to={"/events/"+id}>
             Cancel
           </Link>
 

@@ -57,7 +57,10 @@ const NavBar = ({ handleSignout, setUser, handleSearch }) => {
               <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
               <ul className="navbar-nav me-2 mb-2 mb-lg-0">
                 <li className="nav-item mx-4">
-                  <button className="btn btn-primary" to="/events/new">
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => navigate("/events/new")}
+                  >
                     Create New Event
                   </button>
                 </li>
