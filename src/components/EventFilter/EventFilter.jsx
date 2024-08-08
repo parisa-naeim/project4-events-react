@@ -66,7 +66,7 @@ const EventFilter = (props) => {
         </select>
       </div>
       <div className="d-flex align-items-center gap-3">
-        <div class="form-check form-switch">
+        <div className="form-check form-switch">
           <input
             role="button"
             className="form-check-input"
