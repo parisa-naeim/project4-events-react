@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import * as authService from "../../services/authService";
 
 const SignupForm = (props) => {
@@ -94,9 +93,12 @@ const SignupForm = (props) => {
             </button>
           </div>
           <div>
-            <Link to="/">
-              <button className="btn px-4 py-2 btn-primary">Cancel</button>
-            </Link>
+            <button
+              className="btn px-4 py-2 btn-primary"
+              onClick={props.onCancel}
+            >
+              Cancel
+            </button>
           </div>
         </div>
       </form>

@@ -143,7 +143,7 @@ const EventDetails = (props) => {
                   year: "numeric",
                 })} 11:30AM
               </p>
-              <p style={{ color: "#aaaaaa" }}>held by @{user.username}</p>
+              <p style={{ color: "#aaaaaa" }}>held by @{event.organiser.username}</p>
               <p style={{ color: "#aaaaaa" }}>
                 This is an {event.type.toLowerCase()} event
               </p>

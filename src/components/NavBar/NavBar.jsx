@@ -134,11 +134,17 @@ const NavBar = ({ handleSignout, setUser, handleSearch }) => {
         </nav>
       )}
       <Modal isOpen={showSignIn} onClose={() => setShowSignIn(false)}>
-        <SigninForm onSignIn={handleOnSignIn} />
+        <SigninForm
+          onSignIn={handleOnSignIn}
+          onCancel={() => setShowSignIn(false)}
+        />
       </Modal>
 
       <Modal isOpen={showSignUp} onClose={() => setShowSignUp(false)}>
-        <SignupForm onSignUp={handleOnSignUp} />
+        <SignupForm
+          onSignUp={handleOnSignUp}
+          onCancel={() => setShowSignUp(false)}
+        />
       </Modal>
     </>
   );
