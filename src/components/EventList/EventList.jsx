@@ -1,13 +1,25 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
+import { useContext } from "react";
+import { AuthedUserContext } from "../App";
 
 const EventList = (props) => {
+  const navigate = useNavigate();
+  const user = useContext(AuthedUserContext);
+
+  const handleClick = (event) => {
+    user
+      ? navigate("/events/" + event._id)
+      : console.log("user is not logged in");
+  };
+
   const eventListItems = props.events.map((event) => (
-    <Link
+    <div
       key={event._id}
-      className="card position-relative card-div"
-      style={{ width: "18rem", minHeight: "400px" }}
-      to={"/events/" + event._id}
+      className="card card-div"
+      style={{ width: "18rem", minHeight: "400px", cursor: "pointer" }}
+      onClick={() => handleClick(event)}
+      // to={"/events/" + event._id}
     >
       <img
         src={event.image || "sample-event-image-2.png"}
@@ -45,7 +57,7 @@ const EventList = (props) => {
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   ));
 
   return <main className="event-container">{eventListItems}</main>;
